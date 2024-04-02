@@ -32,9 +32,8 @@ You can return to your [bedroom].
                         
                     }
                     break;
-                case "bedroom":
-                    Console.WriteLine("You return to your bedroom.");
-                    Game.Transition<Corridor>();
+                case "wolf":
+                    Console.WriteLine("Buzz off, I don't feel like talkin'");
                     break;
                 default:
                     Console.WriteLine("Invalid command.");

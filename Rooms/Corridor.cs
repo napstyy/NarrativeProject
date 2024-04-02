@@ -62,6 +62,7 @@ beyond where you are. It's pure void and darkness on both sides
                     break;
                 case "bump":
                     Console.WriteLine("You dig your hands under the carpet. Ah! this is a handsaw!");
+                    isSawCollected  = true;
                     break;
                 case "side":
                     Console.WriteLine("He's looking at the void. Nothing too interesting out there");

@@ -9,36 +9,58 @@ namespace NarrativeProject.Rooms
         internal override string CreateDescription() =>
 @"You're in the nature room. It's a small enclosure with plants and animals
 --------------------------------------------
-There are large trees reaching all the way to the darkness above
+There are large trees with [branch]es reaching all the way to the darkness above,
+their [vine]s reach all the way to the ground
 --------------------------------------------
-There are bushes with ripe berries, they look delicious
+There are bushes with a new type of [berry], they look delicious
 --------------------------------------------
-There's a few small critters, rabbits and frogs
+There's a few small critters, [rabbit]s and [frog]s
 --------------------------------------------
-There's a big sleeping bear. It seems dangerous. There's something behind it
+There's a big sleeping [bear]. It seems dangerous. There's something behind it
 --------------------------------------------
-There is a [hell] door, covered in molten rock and lava
+You see a fake [sun]
 --------------------------------------------
-The corridor boasts a long [carpet]
+There's a small artificial [river] with [fish] in it
 --------------------------------------------
-There's a [mirror] on the other side of the wall
-in front of the wolf man
---------------------------------------------
-The corridor doesn't seem to end, but there aren't any lights
-beyond where you are. It's pure void and darkness on both sides
+Plenty of rocks and [stone]s here
 ";
 
         internal override void ReceiveChoice(string choice)
         {
             switch (choice)
             {
-                case "bedroom":
-                    Console.WriteLine("You return to your bedroom.");
-                    Game.Transition<Corridor>();
+                case "berry":
+                    Console.WriteLine("You got a berry!");
                     break;
-                case "6969":
-                    Console.WriteLine("The chest opens and you get a key.");
-                    isKeyCollected = true;
+                case "rabbit":
+                    Console.WriteLine("The rabbit skitters away from you!");
+                    break;
+                case "frog":
+                    Console.WriteLine("The frog hops away from you!");
+                    break;
+                case "bear":
+                    Console.WriteLine("The bear is asleep, you don't want to [wake] it up");
+                    break;
+                case "sun":
+                    Console.WriteLine("The fake sun is just as hot as a real sun");
+                    break;
+                case "river":
+                    Console.WriteLine("A source of clean water");
+                    break;
+                case "fish":
+                    Console.WriteLine("The fish are too hard to catch");
+                    break;
+                case "vine":
+                    Console.WriteLine("You cut through the vines with the handsaw! You get a spool of vine");
+                    break;
+                case "stone":
+                    Console.WriteLine("You get a stone!");
+                    break;
+                case "wake":
+                    Console.WriteLine("You wake up the bear! It's angry and swipes at your face. You take 10 damage");
+                    break;
+                case "branch":
+                    Console.WriteLine("You cut through a branch! You get a stick!");
                     break;
                 default:
                     Console.WriteLine("Invalid command.");
