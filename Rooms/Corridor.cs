@@ -5,10 +5,13 @@ namespace NarrativeProject.Rooms
     internal class Corridor : Room
     {
         internal static bool isSawCollected = false;
+        internal static bool isNatureOpen = false;
+        internal static bool isHammerCollected = false;
+        internal static bool isCollected = false;
 
 
         internal override string CreateDescription() =>
-@"You wake up in an unfamiliar place, a large corridor
+@"You're in a large corridor
 --------------------------------------------
 There are large columns and an eerie yellow light coming from torches
 --------------------------------------------
@@ -37,16 +40,25 @@ beyond where you are. It's pure void and darkness on both sides
                     Console.WriteLine("Buzz off, I don't feel like talkin'");
                     break;
                 case "nature":
-                    if (!isSawCollected)
+                    if (!isNatureOpen)
                     {
-                        Console.WriteLine("The nature door won't budge. The thorns and vines seem to keep it locked");
+                        if (!isSawCollected)
+                        {
+                            Console.WriteLine("The nature door won't budge. The thorns and vines seem to keep it locked");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You cut right through the vines thanks to the saw! You can now go through the [nature] door");
+                            isNatureOpen=true;
+
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("You cut right through the vines thanks to the saw!");
+                        Console.WriteLine("You go through the wide open Nature door");
                         Game.Transition<Nature>();
-
                     }
+                    
                     break;
                 case "ocean":
                     Console.WriteLine("The ocean door won't open. It seems the hard shells are the cause");

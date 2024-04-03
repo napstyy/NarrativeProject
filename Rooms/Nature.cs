@@ -23,6 +23,8 @@ You see a fake [sun]
 There's a small artificial [river] with [fish] in it
 --------------------------------------------
 Plenty of rocks and [stone]s here
+--------------------------------------------
+The nature [door] is wide open behind you
 ";
 
         internal override void ReceiveChoice(string choice)
@@ -61,6 +63,10 @@ Plenty of rocks and [stone]s here
                     break;
                 case "branch":
                     Console.WriteLine("You cut through a branch! You get a stick!");
+                    break;
+                case "door":
+                    Console.WriteLine("You slowly walk back out into the corridor");
+                    Game.Transition<Corridor>();
                     break;
                 default:
                     Console.WriteLine("Invalid command.");
