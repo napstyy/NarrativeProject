@@ -5,8 +5,11 @@ namespace NarrativeProject.Rooms
     internal class Corridor : Room
     {
         internal static bool isSawCollected = false;
-        internal static bool isNatureOpen = false;
         internal static bool isHammerCollected = false;
+
+        internal static bool isNatureOpen = false;
+        internal static bool isOceanOpen = false;
+        
         internal static bool isCollected = false;
 
 
@@ -44,7 +47,7 @@ beyond where you are. It's pure void and darkness on both sides
                     {
                         if (!isSawCollected)
                         {
-                            Console.WriteLine("The nature door won't budge. The thorns and vines seem to keep it locked");
+                            Console.WriteLine("The nature door won't budge. The thorns and vines need to be cut");
                         }
                         else
                         {
@@ -61,7 +64,24 @@ beyond where you are. It's pure void and darkness on both sides
                     
                     break;
                 case "ocean":
-                    Console.WriteLine("The ocean door won't open. It seems the hard shells are the cause");
+                    if (!isOceanOpen)
+                    {
+                        if (!isHammerCollected)
+                        {
+                            Console.WriteLine("The ocean door won't move. The hard shells would need to be smashed open");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You smash the shells to bits thanks to the hammer! You can now go through the [ocean] door");
+                            isOceanOpen = true;
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("You go through the wide open Nature door");
+                        Game.Transition<Nature>();
+                    }
                     break;
                 case "hell":
                     Console.WriteLine("The hell door is terrifying, you don't dare to get too close");
