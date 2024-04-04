@@ -6,11 +6,13 @@ namespace NarrativeProject.Rooms
     {
         internal static bool isSawCollected = false;
         internal static bool isHammerCollected = false;
+        internal static bool isSuitCollected = false;
 
         internal static bool isNatureOpen = false;
         internal static bool isOceanOpen = false;
-        
-        internal static bool isCollected = false;
+        internal static bool isHellOpen = false;
+
+        internal static int timesEnteredNature = 0;
 
 
         internal override string CreateDescription() =>
@@ -40,7 +42,16 @@ beyond where you are. It's pure void and darkness on both sides
             switch (choice)
             {
                 case "wolf":
-                    Console.WriteLine("Buzz off, I don't feel like talkin'");
+                    if (timesEnteredNature > 0)
+                    {
+                        Console.WriteLine("Alright kid, I'll tell you how to leave if you go through all the doors here, heh");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Buzz off, I don't feel like talkin'");
+                    }
+                    
                     break;
                 case "nature":
                     if (!isNatureOpen)
@@ -60,6 +71,7 @@ beyond where you are. It's pure void and darkness on both sides
                     {
                         Console.WriteLine("You go through the wide open Nature door");
                         Game.Transition<Nature>();
+                        timesEnteredNature++;
                     }
                     
                     break;
@@ -79,12 +91,29 @@ beyond where you are. It's pure void and darkness on both sides
                     }
                     else
                     {
-                        Console.WriteLine("You go through the wide open Nature door");
+                        Console.WriteLine("You go through the wide open Ocean door");
                         Game.Transition<Nature>();
                     }
                     break;
                 case "hell":
-                    Console.WriteLine("The hell door is terrifying, you don't dare to get too close");
+                    if (!isHellOpen)
+                    {
+                        if (!isSuitCollected)
+                        {
+                            Console.WriteLine("It's not even a door, just a constant stream of lava, like a waterfall");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You got a heatproof suit on! You feel confident enough to go through the [hell] door");
+                            isHellOpen = true;
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("You go through the curtain of lava");
+                        Game.Transition<Hell>();
+                    }
                     break;
                 case "carpet":
                     Console.WriteLine("The carpet looks fancy. It never seems to end. You notice a [bump]");
