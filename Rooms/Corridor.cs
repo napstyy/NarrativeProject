@@ -7,6 +7,7 @@ namespace NarrativeProject.Rooms
         internal static bool isSawCollected = false;
         internal static bool isHammerCollected = false;
         internal static bool isSuitCollected = false;
+        internal static bool isBombCollected = false;
 
         internal static bool isNatureOpen = false;
         internal static bool isOceanOpen = false;
