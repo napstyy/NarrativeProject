@@ -4,7 +4,8 @@ namespace NarrativeProject.Rooms
 {
     internal class AtticRoom : Room
     {
-        
+        int id = 3;
+
 
         internal override string CreateDescription() =>
 @"You're on a very small island, lit only with tiki torches, surrounded with water

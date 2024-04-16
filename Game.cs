@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using NarrativeProject.Rooms;
+using System;
+using System.Collections.Generic;
 
 namespace NarrativeProject
 {
@@ -9,6 +11,7 @@ namespace NarrativeProject
         internal bool IsGameOver() => isFinished;
         static bool isFinished;
         static string nextRoom = "";
+        static int previousRoom;
 
         internal void Add(Room room)
         {
@@ -23,14 +26,31 @@ namespace NarrativeProject
 
         internal void ReceiveChoice(string choice)
         {
-            currentRoom.ReceiveChoice(choice);
-            CheckTransition();
+            if (choice == "[i]") 
+            {
+                Console.WriteLine("welcome to inventory");
+                Transition<Inventory>();
+            }
+            else if (choice == "[b]")
+            {
+                previousRoom = currentRoom.Id;
+                Transition<Inventory>();
+            }
+            else
+            {
+                currentRoom.ReceiveChoice(choice);
+                CheckTransition();
+            }
+
+           
         }
 
         internal static void Transition<T>() where T : Room
         {
             nextRoom = typeof(T).Name;
         }
+
+        
 
         internal static void Finish()
         {

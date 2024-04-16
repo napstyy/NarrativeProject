@@ -4,6 +4,7 @@ namespace NarrativeProject.Rooms
 {
     internal class Nature : Room
     {
+        int id = 2;
         internal static bool isKeyCollected;
 
         internal override string CreateDescription() =>

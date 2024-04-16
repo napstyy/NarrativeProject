@@ -16,6 +16,7 @@ namespace NarrativeProject
             while (!game.IsGameOver())
             {
                 Console.WriteLine("--");
+                Console.WriteLine("Open your inventory with [i]");
                 Console.WriteLine(game.CurrentRoomDescription);
                 string choice = Console.ReadLine().ToLower() ?? "";
                 Console.Clear();

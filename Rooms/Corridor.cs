@@ -13,6 +13,8 @@ namespace NarrativeProject.Rooms
         internal static bool isOceanOpen = false;
         internal static bool isHellOpen = false;
 
+        int id=1;
+
         internal static int timesEnteredNature = 0;
 
 

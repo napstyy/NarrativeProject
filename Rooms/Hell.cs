@@ -4,6 +4,7 @@ namespace NarrativeProject.Rooms
 {
     internal class Hell : Room
     {
+        int id = 4;
         internal static bool bomb = Corridor.isBombCollected;
         
 
