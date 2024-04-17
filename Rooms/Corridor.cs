@@ -4,6 +4,10 @@ namespace NarrativeProject.Rooms
 {
     internal class Corridor : Room
     {
+
+        internal override int id { get { return 1; } }
+
+
         internal static bool isSawCollected = false;
         internal static bool isHammerCollected = false;
         internal static bool isSuitCollected = false;
@@ -13,7 +17,16 @@ namespace NarrativeProject.Rooms
         internal static bool isOceanOpen = false;
         internal static bool isHellOpen = false;
 
-        int id=1;
+        private Game game;
+
+        public Corridor(Game game)
+        {
+            this.game = game;
+        }
+
+
+
+
 
         internal static int timesEnteredNature = 0;
 
@@ -126,6 +139,7 @@ beyond where you are. It's pure void and darkness on both sides
                     break;
                 case "bump":
                     Console.WriteLine("You dig your hands under the carpet. Ah! this is a handsaw!");
+                    Game.AddToInventory("Handsaw");
                     isSawCollected  = true;
                     break;
                 case "side":

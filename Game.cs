@@ -7,11 +7,12 @@ namespace NarrativeProject
     internal class Game
     {
         List<Room> rooms = new List<Room>();
-        Room currentRoom;
+        public Room currentRoom;
         internal bool IsGameOver() => isFinished;
         static bool isFinished;
         static string nextRoom = "";
-        static int previousRoom;
+        static List<string> inventory = new List<string>();
+
 
         internal void Add(Room room)
         {
@@ -26,23 +27,26 @@ namespace NarrativeProject
 
         internal void ReceiveChoice(string choice)
         {
-            if (choice == "[i]") 
+            if (choice == "i")
             {
-                Console.WriteLine("welcome to inventory");
-                Transition<Inventory>();
+                Console.WriteLine("Welcome to inventory");
+                // Display inventory
+                Console.WriteLine("Inventory:");
+                foreach (var item in inventory)
+                {
+                    Console.WriteLine(item);
+                }
             }
-            else if (choice == "[b]")
+            else if (choice == "b")
             {
-                previousRoom = currentRoom.Id;
-                Transition<Inventory>();
+                // Transition to previous room if possible
+                Transition<Room>();
             }
             else
             {
                 currentRoom.ReceiveChoice(choice);
                 CheckTransition();
             }
-
-           
         }
 
         internal static void Transition<T>() where T : Room
@@ -69,5 +73,18 @@ namespace NarrativeProject
                 }
             }
         }
+
+
+        public static void AddToInventory(string item)
+        {
+            inventory.Add(item);
+        }
+
+
+
+
+
+
+
     }
 }

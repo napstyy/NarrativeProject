@@ -8,10 +8,13 @@ namespace NarrativeProject
         static void Main(string[] args)
         {
             var game = new Game();
-            game.Add(new Corridor());
+            game.Add(new Corridor(game));
             game.Add(new Hell());
             game.Add(new Nature());
-           
+            game.Add(new Inventory());
+            game.Add(new Ocean());
+            game.Add(new Paradise());
+
 
             while (!game.IsGameOver())
             {

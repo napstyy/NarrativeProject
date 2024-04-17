@@ -4,7 +4,7 @@ namespace NarrativeProject.Rooms
 {
     internal class Paradise : Room
     {
-        int id = 5;
+        internal override int id { get { return 5; } }
 
         internal static bool isCodeShown = false;
 

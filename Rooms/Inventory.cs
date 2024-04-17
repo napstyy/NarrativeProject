@@ -1,46 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace NarrativeProject.Rooms
 {
     internal class Inventory : Room
     {
-
-        internal static List<Inventory> inventory = new List<Inventory>();
+        internal override int id { get { return 6; } }
 
         internal override string CreateDescription() =>
-@"This is your INVENTORY --- [INFO] --- [EAT] --- [COMBINE]
+@"This is your INVENTORY
 You have the following items:
 ";
 
-
-    internal Inventory()
+        internal override void ReceiveChoice(string choice)
         {
-            foreach (var item in inventory)
-            {
-
-            }
-        }
-        
-
-
-
-    internal override void ReceiveChoice(string choice)
-        {
-            switch (choice)
-            {
-                case "bath":
-                    Console.WriteLine("You relax in the bath. Fog wafts up all over the bathroom");
-                    
-                    break;
-                
-                case "wolf":
-                    Console.WriteLine("Buzz off, I don't feel like talkin'");
-                    break;
-                default:
-                    Console.WriteLine("Invalid command.");
-                    break;
-            }
+            Console.WriteLine("You are in the inventory room.");
+            Console.WriteLine("You can't do anything here except view your items.");
         }
     }
 }

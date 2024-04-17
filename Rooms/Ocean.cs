@@ -2,9 +2,9 @@
 
 namespace NarrativeProject.Rooms
 {
-    internal class AtticRoom : Room
+    internal class Ocean : Room
     {
-        int id = 3;
+        internal override int id { get { return 3; } }
 
 
         internal override string CreateDescription() =>
