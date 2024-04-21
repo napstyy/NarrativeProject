@@ -11,22 +11,29 @@ namespace NarrativeProject
             game.Add(new Corridor(game));
             game.Add(new Hell());
             game.Add(new Nature());
-            game.Add(new Inventory());
             game.Add(new Ocean());
             game.Add(new Paradise());
 
 
-            while (!game.IsGameOver())
+            while (!game.IsGameOver() && Game.hp <= 0)
             {
+                
+                Console.WriteLine("--");
+                Console.WriteLine("Current Health: "+ Game.hp);
                 Console.WriteLine("--");
                 Console.WriteLine("Open your inventory with [i]");
+                Console.WriteLine("--");
                 Console.WriteLine(game.CurrentRoomDescription);
                 string choice = Console.ReadLine().ToLower() ?? "";
                 Console.Clear();
                 game.ReceiveChoice(choice);
             }
 
-            Console.WriteLine("END");
+
+            string roomName = Game.currentRoom;
+
+
+            Console.WriteLine("You died in" );
             Console.ReadLine();
         }
     }

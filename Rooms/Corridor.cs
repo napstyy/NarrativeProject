@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NarrativeProject.Rooms
 {
     internal class Corridor : Room
     {
+       
+       
+        
 
-        internal override int id { get { return 1; } }
+        
 
-
-        internal static bool isSawCollected = false;
-        internal static bool isHammerCollected = false;
         internal static bool isSuitCollected = false;
         internal static bool isBombCollected = false;
 
@@ -72,14 +73,15 @@ beyond where you are. It's pure void and darkness on both sides
                 case "nature":
                     if (!isNatureOpen)
                     {
-                        if (!isSawCollected)
+                        if (Game.inventory.Contains("Handsaw"))
                         {
-                            Console.WriteLine("The nature door won't budge. The thorns and vines need to be cut");
+                            
+                            Console.WriteLine("You cut right through the vines thanks to the saw! You can now go through the [nature] door");
+                            isNatureOpen = true;
                         }
                         else
                         {
-                            Console.WriteLine("You cut right through the vines thanks to the saw! You can now go through the [nature] door");
-                            isNatureOpen=true;
+                            Console.WriteLine("The nature door won't budge. The thorns and vines need to be cut");
 
                         }
                     }
@@ -94,14 +96,15 @@ beyond where you are. It's pure void and darkness on both sides
                 case "ocean":
                     if (!isOceanOpen)
                     {
-                        if (!isHammerCollected)
+                        if (Game.inventory.Contains("Hammer"))
                         {
-                            Console.WriteLine("The ocean door won't move. The hard shells would need to be smashed open");
+                            
+                            Console.WriteLine("You smash the shells to bits thanks to the hammer! You can now go through the [ocean] door");
+                            isOceanOpen = true;
                         }
                         else
                         {
-                            Console.WriteLine("You smash the shells to bits thanks to the hammer! You can now go through the [ocean] door");
-                            isOceanOpen = true;
+                            Console.WriteLine("The ocean door won't move. The hard shells would need to be smashed open");
 
                         }
                     }
@@ -114,14 +117,15 @@ beyond where you are. It's pure void and darkness on both sides
                 case "hell":
                     if (!isHellOpen)
                     {
-                        if (!isSuitCollected)
+                        if (Game.inventory.Contains("Suit"))
                         {
-                            Console.WriteLine("It's not even a door, just a constant stream of lava, like a waterfall");
+                            
+                            Console.WriteLine("You got a heatproof suit on! You feel confident enough to go through the [hell] door");
+                            isHellOpen = true;
                         }
                         else
                         {
-                            Console.WriteLine("You got a heatproof suit on! You feel confident enough to go through the [hell] door");
-                            isHellOpen = true;
+                            Console.WriteLine("It's not even a door, just a constant stream of lava, like a waterfall");
 
                         }
                     }
@@ -140,7 +144,7 @@ beyond where you are. It's pure void and darkness on both sides
                 case "bump":
                     Console.WriteLine("You dig your hands under the carpet. Ah! this is a handsaw!");
                     Game.AddToInventory("Handsaw");
-                    isSawCollected  = true;
+                    
                     break;
                 case "side":
                     Console.WriteLine("He's looking at the void. Nothing too interesting out there");

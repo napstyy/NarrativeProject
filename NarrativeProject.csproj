@@ -47,7 +47,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.cs" />
-    <Compile Include="Rooms\Inventory.cs" />
     <Compile Include="Rooms\Paradise.cs" />
     <Compile Include="Rooms\Ocean.cs" />
     <Compile Include="Rooms\Nature.cs" />

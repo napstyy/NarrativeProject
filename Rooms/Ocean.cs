@@ -4,7 +4,7 @@ namespace NarrativeProject.Rooms
 {
     internal class Ocean : Room
     {
-        internal override int id { get { return 3; } }
+        
 
 
         internal override string CreateDescription() =>
@@ -32,9 +32,7 @@ The [door] behind you isn't connected to a wall. But you can still see the corri
                 case "palm":
                     Console.WriteLine("The trees are tall, but you can spot some [coconut]s");
                     break;
-                case "rod":
-                    Console.WriteLine("The rod isn't catching anything... Wanna try [fish]ing ?");
-                    break;
+
                 case "bird":
                     Console.WriteLine("Ah.. It's out of reach..");
                     break;
@@ -47,23 +45,23 @@ The [door] behind you isn't connected to a wall. But you can still see the corri
                 case "coconut":
                     Console.WriteLine("They look heavy. [kick] the tree ?");
                     break;
-                case "fish":
-                    Console.WriteLine("Aaaand... No luck. You'll need to find bait");
-                    break;
+
                 case "something":
-                    Console.WriteLine("Too dark.. Maybe with a way to light the distance..");
+                    Console.WriteLine("Too dark.. Maybe with a way to light the way..");
                     break;
                 case "object":
                     Console.WriteLine("It's an arrowhead! [steal] it ? or [replace] it with something from your inventory ?");
                     break;
                 case "kick":
                     Console.WriteLine("One's falling! Ouch.. It hit your head. You take 5 damage. You got a coconut!");
+                    Game.hp -= 5;
+                    Game.AddToInventory("Coconut");
                     break;
                 case "steal":
                     Console.WriteLine("The crabs look mad! They prick at your feet. You take 10 damage");
                     break;
                 case "replace":
-                    Console.WriteLine("They look heavy. [kick] the tree ?"); // gotta turn this into an inventory thing instead of a switch
+                    Console.WriteLine("They look heavy. [kick] the tree ?"); 
                     break;
                 case "door":
                     Console.WriteLine("You slowly walk back out into the corridor");
