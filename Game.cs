@@ -7,7 +7,8 @@ namespace NarrativeProject
     internal class Game
     {
         List<Room> rooms = new List<Room>();
-        public static Room currentRoom;
+
+        static public Room currentRoom;
         internal bool IsGameOver() => isFinished;
         static bool isFinished;
         static string nextRoom = "";

@@ -29,11 +29,15 @@ namespace NarrativeProject
                 game.ReceiveChoice(choice);
             }
 
+            // this is for the room names
+            string bigRoomName = Game.currentRoom.ToString();
+            int lastIndex = bigRoomName.LastIndexOf('.') + 1;
+            string roomName = bigRoomName.Substring(lastIndex);
 
-            string roomName = Game.currentRoom;
 
 
-            Console.WriteLine("You died in" );
+
+            Console.WriteLine("You died in " + roomName);
             Console.ReadLine();
         }
     }
