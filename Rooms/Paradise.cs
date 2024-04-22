@@ -9,33 +9,39 @@ namespace NarrativeProject.Rooms
         internal static bool isCodeShown = false;
 
         internal override string CreateDescription() =>
-@"In your bathroom, the [bath] is filled with hot water.
-The [mirror] in front of you reflects your depressed face.
-You can return to your [bedroom].
+@"You're on a cloud . . .
+--------------------------------------------
+There's light everywhere . . .
+--------------------------------------------
+That's an [angel] in front of you . . .
+--------------------------------------------
+You feel serene . . .
+--------------------------------------------
+Is it time to let go ? . . .
+--------------------------------------------
+Or maybe . . .
+--------------------------------------------
+You want to get your revenge . . .
+--------------------------------------------
+Should you [rest] ? Or should you go back to the [corridor] . . .
 ";
 
         internal override void ReceiveChoice(string choice)
         {
             switch (choice)
             {
-                case "bath":
-                    Console.WriteLine("You relax in the bath. Fog wafts up all over the bathroom");
-                    isCodeShown = true;
+                case "angel":
+                    Console.WriteLine("Be not afraid");
+
                     break;
-                case "mirror":
-                    if (!isCodeShown)
-                    {
-                        Console.WriteLine("There's unclear numbers written on the foggy mirror.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("The code is clear now. It is 6969");
-                        
-                    }
+                case "rest":
+                    Console.WriteLine("You let go . . . It feels good . . . Goodnight . . .");
+                    Game.Finish();
                     break;
-                case "bedroom":
-                    Console.WriteLine("You return to your bedroom.");
-                    Game.Transition<Corridor>();
+                case "corridor":
+                    Console.WriteLine("It's you and your backpack against the wolf . . .");
+                    Game.Transition<Corridor2>();
+                    Game.currentRoom = new Corridor2();
                     break;
                 default:
                     Console.WriteLine("Invalid command.");

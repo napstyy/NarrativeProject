@@ -8,10 +8,36 @@ namespace NarrativeProject.Rooms
 
 
         internal static bool bomb = Corridor.isBombCollected;
-        
 
+        internal static bool isDoorOpen = false;
+        internal static bool isCodeBroken = false;
+        internal static bool isPortalOpen = false;
         internal static int impNum;
         internal static int snakeBone;
+
+
+
+        string[] symbols = { "AU", "AG", "CU" };
+        
+
+        static void Shuffle(string[] Arr)
+        {
+            Random random = new Random();
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                int randNum = random.Next(3);
+
+                string temp = Arr[i];
+                Arr[i] = Arr[randNum];
+                Arr[randNum] = temp;
+                Console.Write(temp);
+            }
+        }
+
+
+
+
+
 
         internal static bool isCodeShown = false;
 
@@ -37,65 +63,103 @@ The hell [door] is closed shut behind you..
 
         internal override void ReceiveChoice(string choice)
         {
+            
+
+
             switch (choice)
             {
                 case "altar":
                     Console.WriteLine("The altar has weird signs on it. Try to [read] them ?");
                     break;
                 case "orb":
-                    Console.WriteLine("The orb is ominous. Try to [seize] it ?");
+                    Console.WriteLine("The orb is ominous. [Seize] it ?");
+                    
+
+                    
                     break;
                 case "imp":
-                    Console.WriteLine("The imps pay you no mind. They're playing with each other. There's about "+impNum);
+                    Console.WriteLine("The imps look at you and start talking about the importance of GOLD compared to SILVER ");
                     break;
                 case "snake":
-                    Console.WriteLine("The snake is made out of bone only. It has many bones... You count about "+snakeBone);
+                    Console.WriteLine("The snake is made out of bone only. It's murmuring about how SILVER is way cooler than COPPER");
                     break;
                 case "river":
                     Console.WriteLine("A source of molten lava");
                     break;
                 case "portal":
-                    Console.WriteLine("Large and uncanny. The portal awaits an item for its circular [slot]");
+                    if (!isPortalOpen)
+                    {
+                        Console.WriteLine("You go through the shimmering energy...");
+                        Game.Transition<Paradise>();
+                        Game.currentRoom = new Paradise();
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Large and uncanny. The portal awaits an item for its circular [slot]");
+                    }
+                    
                     break;
                 case "door":
-                    if (!bomb)
+                    if (!isDoorOpen)
                     {
-                        if (!bomb)
+                        if (Game.inventory.Contains("Bullet"))
                         {
-                            Console.WriteLine("Ah.. can't go through solid obsidian. You'd need to [blow] it up!");
+
+                            Console.WriteLine("BOOM! The rock shatters! The corridor is open !");
+                            isDoorOpen = true;
                         }
                         else
                         {
-                            Console.WriteLine("BOOM! Woah! You completely destroyed the wall! You can go through the [door] now!");
+                            Console.WriteLine("There's a C4 on the wall");
 
                         }
                     }
                     else
                     {
                         Console.WriteLine("You go through the wide open door");
-                        Game.Transition<Corridor>();
+                        Game.Transition<Corridor2>();
+                        Game.currentRoom = new Corridor2();
                     }
                     break;
                 case "read":
-                    if (!bomb)
+                    Console.WriteLine("Huh... it's just gibberish! What the hell is " );
+                    Shuffle(symbols);
+                    
+                    break;
+                case "seize":
+
+                    if (!isCodeBroken)
                     {
-                        Console.WriteLine("Gibberish.. If only you had");
+                        Console.WriteLine("Yeeowch!! It's stuck and it burns! You take 10 damage ?");
+                        Game.hp -= 10;
                     }
                     else
                     {
-                        Console.WriteLine("BOOM! Woah! You completely destroyed the wall! You can go through the [door] now!");
-
+                        Console.WriteLine("You take the orb!");
+                        Game.AddToInventory("Orb");
                     }
-                    break;
-                case "seize":
-                    Console.WriteLine("The altar has weird signs on it. Try to [read] them ?");
+                    
                     break;
                 case "slot":
-                    Console.WriteLine("The altar has weird signs on it. Try to [read] them ?");
+                    if (Game.inventory.Contains("Orb"))
+                    {
+                        Console.WriteLine("The portal opens up in a flash of energy! You're free to leave this hellscape! Finally!");
+                        isPortalOpen = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("The slot is spherical.");
+                    }
+                    
                     break;
+                case "AUAGCU":
+                    Console.WriteLine("You say that word outloud, and the [orb] unlocks from it's pedestal!");    
+                    break;  
                 default:
                     Console.WriteLine("Invalid command.");
                     break;
+                
             }
         }
     }

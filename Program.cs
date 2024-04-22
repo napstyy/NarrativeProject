@@ -9,9 +9,10 @@ namespace NarrativeProject
         {
             var game = new Game();
             game.Add(new Corridor());
-            game.Add(new Hell());
             game.Add(new Nature());
             game.Add(new Ocean());
+            game.Add(new Hell());
+            game.Add(new Corridor2());
             game.Add(new Paradise());
 
 

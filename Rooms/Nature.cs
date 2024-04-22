@@ -108,7 +108,8 @@ The nature [door] is wide open behind you
                     }
                     else
                     {
-                        Console.WriteLine("You fed the bear " + timesFed + " Fish!! He only wanted " + timesNeeded + " Fish!");
+                        Console.WriteLine("You fed the bear " + timesFed + " Fish!! To be honest he only wanted like " + timesNeeded + " Fish!");
+                        Console.WriteLine("Oh! He was guarding a Hammer! You pick it up");    
                         Game.AddToInventory("Hammer");
                     }
                     

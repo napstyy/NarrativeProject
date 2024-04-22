@@ -55,7 +55,7 @@ The [door] behind you isn't connected to a wall. But you can still see the corri
                         }
                         else
                         {
-                            Console.WriteLine("You miss! Try throwing another [stone]!");
+                            Console.WriteLine("You miss! Try [throw]ing another stone!");
                             Game.RemoveFromInventory("Stone");
                         }
                     }
@@ -63,14 +63,36 @@ The [door] behind you isn't connected to a wall. But you can still see the corri
                     {
                         Console.WriteLine("Ah, you don't have any stones.. Hmm, maybe there's some somewhere else ?");
                     }
-                        
-                    
                     break;
+                case "shoot":
+                    if (Game.inventory.Contains("Bullet"))
+                    {
+                        birdOnGround = true;
+                        Console.Clear();
+                        Console.WriteLine("You throw a stone at it!");
+                        Game.RemoveFromInventory("Stone");
+                        for (int i = 0; i < 20; i++)
+                        {
+                            Console.WriteLine("|||");
+                        }
+                        Console.WriteLine("PLOP");
+                        Console.WriteLine("It was holding a [bag]!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("*Click* *Click* AH.. no bullets");
+                    }
+                    break;
+
                 case "bag":
                     if (birdOnGround)
                     {
                         Console.WriteLine("There is a folded Heatproof suit inside! You start to wear it...");
                         Game.AddToInventory("Suit");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No cheating now buddy :3");
                     }
                     break;
                 case "horizon":
@@ -97,10 +119,14 @@ The [door] behind you isn't connected to a wall. But you can still see the corri
                 case "steal":
                     Console.WriteLine("The crabs look mad! They prick at your feet. You take 10 damage");
                     Console.WriteLine("You gain a Rifle! It seems to only have one bullet");
+                    Game.AddToInventory("Rifle");
+                    Game.AddToInventory("Bullet");
+                    Game.hp -= 10;
                     break;
                 case "door":
                     Console.WriteLine("You slowly walk back out into the corridor");
                     Game.Transition<Corridor>();
+                    Game.currentRoom = new Corridor();
                     break;
                 default:
                     Console.WriteLine("Invalid command.");

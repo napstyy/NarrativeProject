@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NarrativeProject.Rooms
 {
-    internal class Corridor : Room
+    internal class Corridor2 : Room
     {
        
        
