@@ -118,8 +118,8 @@ The hell [door] is closed shut behind you..
                     else
                     {
                         Console.WriteLine("You go through the wide open door");
-                        Game.Transition<Corridor2>();
-                        Game.currentRoom = new Corridor2();
+                        Game.Transition<Purgatory>();
+                        Game.currentRoom = new Purgatory();
                     }
                     break;
                 case "read":
@@ -131,13 +131,14 @@ The hell [door] is closed shut behind you..
 
                     if (!isCodeBroken)
                     {
-                        Console.WriteLine("Yeeowch!! It's stuck and it burns! You take 10 damage ?");
-                        Game.hp -= 10;
+
+                        Console.WriteLine("You take the orb!");
+                        Game.AddToInventory("Orb");
                     }
                     else
                     {
-                        Console.WriteLine("You take the orb!");
-                        Game.AddToInventory("Orb");
+                        Console.WriteLine("Yeeowch!! It's stuck and it burns! You take 10 damage ?");
+                        Game.hp -= 10;
                     }
                     
                     break;
@@ -153,7 +154,7 @@ The hell [door] is closed shut behind you..
                     }
                     
                     break;
-                case "AUAGCU":
+                case "auagcu":
                     Console.WriteLine("You say that word outloud, and the [orb] unlocks from it's pedestal!");    
                     break;  
                 default:

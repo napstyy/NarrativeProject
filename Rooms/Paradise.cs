@@ -40,8 +40,8 @@ Should you [rest] ? Or should you go back to the [corridor] . . .
                     break;
                 case "corridor":
                     Console.WriteLine("It's you and your backpack against the wolf . . .");
-                    Game.Transition<Corridor2>();
-                    Game.currentRoom = new Corridor2();
+                    Game.Transition<Purgatory>();
+                    Game.currentRoom = new Purgatory();
                     break;
                 default:
                     Console.WriteLine("Invalid command.");

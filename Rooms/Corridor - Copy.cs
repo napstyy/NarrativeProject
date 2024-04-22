@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NarrativeProject.Rooms
 {
-    internal class Corridor2 : Room
+    internal class Purgatory : Room
     {
        
        
@@ -19,130 +19,133 @@ namespace NarrativeProject.Rooms
 
         private Game game;
 
+        Random random = new Random();
 
 
-
-
+        internal static int wolfhp = 50;
 
 
         internal static int timesEnteredNature = 0;
 
 
         internal override string CreateDescription() =>
-@"You're in a large corridor
+$@" WOLF HEALTH: {wolfhp}
 --------------------------------------------
-There are large columns and an eerie yellow light coming from torches
+*Hey pal*  
 --------------------------------------------
-There is a [wolf] man leaning on a column
+*I've been watching you*
 --------------------------------------------
-There is a [nature] door, covered in plants and vines
+*You're too smart to let go wander into the world*
 --------------------------------------------
-There is an [ocean] door, covered in sea shells and sand
+*I had to do it y'know*
 --------------------------------------------
-There is a [hell] door, covered in molten rock and lava
+*Anyways, take this!*
 --------------------------------------------
-The corridor boasts a long [carpet]
+The wolf throws a lava bucket at your face. But you're immune!
 --------------------------------------------
-There's a [mirror] on the other side of the wall
-in front of the wolf man
+[throw] stones at him ?
 --------------------------------------------
-The corridor doesn't seem to end, but there aren't any lights
-beyond where you are. It's pure void and darkness on both sides
+[poke] him with sticks ?
+--------------------------------------------
+[shoot] him ?
+--------------------------------------------
+launch [fish] ... at him .. ??
 ";
 
         internal override void ReceiveChoice(string choice)
         {
-            switch (choice)
+            while (wolfhp > 0) 
             {
-                case "wolf":
-                        Console.WriteLine("Ask a question about a door pal, Ain't got all day!");                    
-                    break;
-                case "nature":
-                    if (!isNatureOpen)
-                    {
-                        if (Game.inventory.Contains("Handsaw"))
+                switch (choice)
+                {
+                    case "throw":
+                        if (Game.inventory.Contains("Stone"))
                         {
-                            
-                            Console.WriteLine("You cut right through the vines thanks to the saw! You can now go through the [nature] door");
-                            isNatureOpen = true;
+                            if (random.Next(100) < 75)
+                            {
+                                Console.WriteLine("You hit him in the face!");
+                                Game.RemoveFromInventory("Stone");
+                                wolfhp -= 5;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("You miss! The wolf shoots a dart at you!");
+                                Game.RemoveFromInventory("Stone");
+                                Game.hp -= 3;
+
+                            }
+
                         }
                         else
                         {
-                            Console.WriteLine("The nature door won't budge. The thorns and vines need to be cut");
+                            Console.WriteLine("No stones in your pack! Do something else!");
 
                         }
-                    }
-                    else
-                    {
-                        Console.WriteLine("You go through the wide open Nature door");
-                        Game.Transition<Nature>();
-                        Game.currentRoom = new Nature();
-                        timesEnteredNature++;
-                    }
-                    
-                    break;
-                case "ocean":
-                    if (!isOceanOpen)
-                    {
-                        if (Game.inventory.Contains("Hammer"))
+
+                        break;
+                    case "poke":
+                        if (Game.inventory.Contains("Stick"))
                         {
-                            
-                            Console.WriteLine("You smash the shells to bits thanks to the hammer! You can now go through the [ocean] door");
-                            isOceanOpen = true;
+                            if (random.Next(100) < 75)
+                            {
+                                Console.WriteLine("You stab him! Your stick breaks!");
+                                Game.RemoveFromInventory("Stick");
+                                wolfhp -= 10;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("He dodges masterfully! Your stick breaks! The wolf man claws at you!");
+                                Game.RemoveFromInventory("Stick");
+                                Game.hp -= 5;
+                            }
+
                         }
                         else
                         {
-                            Console.WriteLine("The ocean door won't move. The hard shells would need to be smashed open");
+                            Console.WriteLine("Ugh! You left all the sticks at the Nature door!");
 
                         }
-                    }
-                    else
-                    {
-                        Console.WriteLine("You go through the wide open Ocean door");
-                        Game.Transition<Ocean>();
-                        Game.currentRoom = new Ocean();
-                    }
-                    break;
-                case "hell":
-                    if (!isHellOpen)
-                    {
-                        if (Game.inventory.Contains("Suit"))
+                        break;
+                    case "shoot":
+                        if (Game.inventory.Contains("Bullet"))
                         {
-                            
-                            Console.WriteLine("You got a heatproof suit on! You feel confident enough to go through the [hell] door");
-                            isHellOpen = true;
+
+                            Console.WriteLine("BANG! . . .");
+                            Console.WriteLine("RIGHT IN THE CHEST");
+                            wolfhp -= 50;
                         }
                         else
                         {
-                            Console.WriteLine("It's not even a door, just a constant stream of lava, like a waterfall");
+                            Console.WriteLine("No ammo! As you fumble around, the wolf slashes you with a blade!");
+                            Game.hp -= 10;
 
                         }
-                    }
-                    else
-                    {
-                        Console.WriteLine("You go through the curtain of lava");
-                        Game.Transition<Hell>();
-                        Game.currentRoom = new Hell();
-                    }
-                    break;
-                case "carpet":
-                    Console.WriteLine("The carpet looks fancy. It never seems to end. You notice a [bump]");
-                    break;
-                case "mirror":
-                    Console.WriteLine("It's you! The wolf man is right behind. He's looking to the [side], sulking");
-                    break;
-                case "bump":
-                    Console.WriteLine("You dig your hands under the carpet. Ah! this is a handsaw!");
-                    Game.AddToInventory("Handsaw");
-                    
-                    break;
-                case "side":
-                    Console.WriteLine("He's looking at the void. Nothing too interesting out there");
-                    break;
-                default:
-                    Console.WriteLine("Invalid command.");
-                    break;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid command.");
+                        break;
+                }
+
+                Console.WriteLine("--");
+                Console.WriteLine("Current Health: " + Game.hp);
+                Console.WriteLine("--");
+                Console.WriteLine("Open your inventory with [i]");
+                Console.WriteLine("--");
+                Console.WriteLine(CreateDescription());
+                
+                choice = Console.ReadLine().Trim().ToLower();
+                Console.Clear();
             }
+            Console.Clear();
+            for (int i = 0; i < 500; i++)
+            {
+                Console.WriteLine("YOU KILLED HIM");
+            }
+            Game.Finish();
+
+            
         }
     }
 }

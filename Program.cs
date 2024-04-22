@@ -12,7 +12,7 @@ namespace NarrativeProject
             game.Add(new Nature());
             game.Add(new Ocean());
             game.Add(new Hell());
-            game.Add(new Corridor2());
+            game.Add(new Purgatory());
             game.Add(new Paradise());
 
 

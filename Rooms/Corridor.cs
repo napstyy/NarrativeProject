@@ -17,7 +17,7 @@ namespace NarrativeProject.Rooms
         internal static bool isOceanOpen = false;
         internal static bool isHellOpen = false;
 
-        private Game game;
+
 
 
 
@@ -55,10 +55,22 @@ beyond where you are. It's pure void and darkness on both sides
             switch (choice)
             {
                 case "wolf":
-                        Console.WriteLine("Ask a question about a door pal, Ain't got all day!");                    
+                        Console.WriteLine("Just say my name followed by a door, i'll tell you what i know, heh..");                    
+                    break;
+                case "wolf nature":
+                    Console.WriteLine("Watch out for the bear in there, he likes to eat fish in bulk! Get him like 5 or 6 of those");
+                    break;
+                case "wolf ocean":
+                    Console.WriteLine("Saw the bird in there carrying something important..");
+                    break;
+                case "wolf hell":
+                    Console.WriteLine("Never could understand what the imps were tryin to tell me");
+                    break;
+                case "wolf corridor":
+                    Console.WriteLine("Nothing here. Just you and me, in purgatory");
                     break;
                 case "nature":
-                    if (!isNatureOpen)
+                    if (isNatureOpen)
                     {
                         if (Game.inventory.Contains("Handsaw"))
                         {
@@ -82,7 +94,7 @@ beyond where you are. It's pure void and darkness on both sides
                     
                     break;
                 case "ocean":
-                    if (!isOceanOpen)
+                    if (isOceanOpen)
                     {
                         if (Game.inventory.Contains("Hammer"))
                         {
@@ -104,7 +116,7 @@ beyond where you are. It's pure void and darkness on both sides
                     }
                     break;
                 case "hell":
-                    if (!isHellOpen)
+                    if (isHellOpen)
                     {
                         if (Game.inventory.Contains("Suit"))
                         {
