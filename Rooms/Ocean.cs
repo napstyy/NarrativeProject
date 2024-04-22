@@ -5,7 +5,8 @@ namespace NarrativeProject.Rooms
     internal class Ocean : Room
     {
         
-
+        Random random = new Random();
+        bool birdOnGround=false;    
 
         internal override string CreateDescription() =>
 @"You're on a very small island, lit only with tiki torches, surrounded with water
@@ -34,13 +35,49 @@ The [door] behind you isn't connected to a wall. But you can still see the corri
                     break;
 
                 case "bird":
-                    Console.WriteLine("Ah.. It's out of reach..");
+                    Console.WriteLine("Ah.. It's out of reach.. You'd have to [throw] stones at it, or [shoot] it down");
+                    break;
+                case "throw":
+                    if (Game.inventory.Contains("Stone"))
+                    {
+                        if (random.Next(100) < 10)
+                        {
+                            birdOnGround = true;
+                            Console.Clear();
+                            Console.WriteLine("You throw a stone at it!");
+                            Game.RemoveFromInventory("Stone");
+                            for (int i = 0; i < 20; i++)
+                            {
+                                Console.WriteLine("|||");
+                            }
+                            Console.WriteLine("PLOP");
+                            Console.WriteLine("It was holding a [bag]!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You miss! Try throwing another [stone]!");
+                            Game.RemoveFromInventory("Stone");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ah, you don't have any stones.. Hmm, maybe there's some somewhere else ?");
+                    }
+                        
+                    
+                    break;
+                case "bag":
+                    if (birdOnGround)
+                    {
+                        Console.WriteLine("There is a folded Heatproof suit inside! You start to wear it...");
+                        Game.AddToInventory("Suit");
+                    }
                     break;
                 case "horizon":
                     Console.WriteLine("Now that you're looking at it, there's [something] in the distance");
                     break;
                 case "crab":
-                    Console.WriteLine("The crabs are playing around with a small [object]");
+                    Console.WriteLine("The crabs are playing around with a peculiar looking [object]");
                     break;
                 case "coconut":
                     Console.WriteLine("They look heavy. [kick] the tree ?");
@@ -50,7 +87,7 @@ The [door] behind you isn't connected to a wall. But you can still see the corri
                     Console.WriteLine("Too dark.. Maybe with a way to light the way..");
                     break;
                 case "object":
-                    Console.WriteLine("It's an arrowhead! [steal] it ? or [replace] it with something from your inventory ?");
+                    Console.WriteLine("It's a rifle! [steal] it ?");
                     break;
                 case "kick":
                     Console.WriteLine("One's falling! Ouch.. It hit your head. You take 5 damage. You got a coconut!");
@@ -59,9 +96,7 @@ The [door] behind you isn't connected to a wall. But you can still see the corri
                     break;
                 case "steal":
                     Console.WriteLine("The crabs look mad! They prick at your feet. You take 10 damage");
-                    break;
-                case "replace":
-                    Console.WriteLine("They look heavy. [kick] the tree ?"); 
+                    Console.WriteLine("You gain a Rifle! It seems to only have one bullet");
                     break;
                 case "door":
                     Console.WriteLine("You slowly walk back out into the corridor");

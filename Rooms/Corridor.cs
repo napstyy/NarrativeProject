@@ -11,7 +11,6 @@ namespace NarrativeProject.Rooms
 
         
 
-        internal static bool isSuitCollected = false;
         internal static bool isBombCollected = false;
 
         internal static bool isNatureOpen = false;
@@ -20,10 +19,7 @@ namespace NarrativeProject.Rooms
 
         private Game game;
 
-        public Corridor(Game game)
-        {
-            this.game = game;
-        }
+
 
 
 
@@ -89,6 +85,8 @@ beyond where you are. It's pure void and darkness on both sides
                     {
                         Console.WriteLine("You go through the wide open Nature door");
                         Game.Transition<Nature>();
+                        Game.currentRoom = new Nature();
+                        Game.currentRoom = new Nature();
                         timesEnteredNature++;
                     }
                     
@@ -111,7 +109,8 @@ beyond where you are. It's pure void and darkness on both sides
                     else
                     {
                         Console.WriteLine("You go through the wide open Ocean door");
-                        Game.Transition<Nature>();
+                        Game.Transition<Ocean>();
+                        Game.currentRoom = new Ocean();
                     }
                     break;
                 case "hell":
@@ -133,6 +132,7 @@ beyond where you are. It's pure void and darkness on both sides
                     {
                         Console.WriteLine("You go through the curtain of lava");
                         Game.Transition<Hell>();
+                        Game.currentRoom = new Hell();
                     }
                     break;
                 case "carpet":

@@ -122,6 +122,7 @@ The nature [door] is wide open behind you
                 case "door":
                     Console.WriteLine("You slowly walk back out into the corridor");
                     Game.Transition<Corridor>();
+                    Game.currentRoom = new Corridor();
                     break;
                 default:
                     Console.WriteLine("Invalid command.");

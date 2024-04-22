@@ -8,14 +8,18 @@ namespace NarrativeProject
         static void Main(string[] args)
         {
             var game = new Game();
-            game.Add(new Corridor(game));
+            game.Add(new Corridor());
             game.Add(new Hell());
             game.Add(new Nature());
             game.Add(new Ocean());
             game.Add(new Paradise());
 
 
-            while (!game.IsGameOver() && Game.hp <= 0)
+
+            
+
+
+            while (!game.IsGameOver() && Game.hp > 0)
             {
                 
                 Console.WriteLine("--");
@@ -27,15 +31,14 @@ namespace NarrativeProject
                 string choice = Console.ReadLine().ToLower() ?? "";
                 Console.Clear();
                 game.ReceiveChoice(choice);
+
+
             }
 
             // this is for the room names
-            string bigRoomName = Game.currentRoom.ToString();
-            int lastIndex = bigRoomName.LastIndexOf('.') + 1;
-            string roomName = bigRoomName.Substring(lastIndex);
-
-
-
+            string fullRoomName = Game.currentRoom.ToString();
+            int lastIndex = fullRoomName.LastIndexOf('.') + 1;
+            string roomName = fullRoomName.Substring(lastIndex);
 
             Console.WriteLine("You died in " + roomName);
             Console.ReadLine();
