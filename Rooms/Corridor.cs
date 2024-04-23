@@ -70,7 +70,7 @@ beyond where you are. It's pure void and darkness on both sides
                     Console.WriteLine("Nothing here. Just you and me, in purgatory");
                     break;
                 case "nature":
-                    if (isNatureOpen)
+                    if (!isNatureOpen)
                     {
                         if (Game.inventory.Contains("Handsaw"))
                         {
@@ -94,7 +94,7 @@ beyond where you are. It's pure void and darkness on both sides
                     
                     break;
                 case "ocean":
-                    if (isOceanOpen)
+                    if (!isOceanOpen)
                     {
                         if (Game.inventory.Contains("Hammer"))
                         {
@@ -116,7 +116,7 @@ beyond where you are. It's pure void and darkness on both sides
                     }
                     break;
                 case "hell":
-                    if (isHellOpen)
+                    if (!isHellOpen)
                     {
                         if (Game.inventory.Contains("Suit"))
                         {
