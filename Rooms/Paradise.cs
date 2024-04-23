@@ -9,7 +9,15 @@ namespace NarrativeProject.Rooms
     internal class Paradise : Room
     {
 
+        public override void gameDone()
+        {
+            for (int i = 0; i < 5000; i++)
+            {
+                Console.WriteLine("YOU WIN");
+            }
 
+            Console.ReadLine();
+        }
 
 
 
@@ -69,7 +77,7 @@ Should you [rest] ? Or should you go back to the [corridor] . . .
                         if (input == "red yellow blue")
                         {
                             Console.WriteLine("The colors mix together into white. The angel looks happy. It covers you in light");
-                            new Program2().gameDone();
+                            gameDone();
                             Game.isFinished = true;
                         }
                         else

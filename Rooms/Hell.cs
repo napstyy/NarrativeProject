@@ -104,18 +104,18 @@ The hell [door] is closed shut behind you..
                         if (Game.inventory.Contains("Bullet"))
                         {
 
-                            Console.WriteLine("BOOM! The rock shatters! The corridor is open !");
+                            Console.WriteLine("There's a C4 on the wall. You shoot at it. BOOM! The rock shatters! The corridor is open !");
                             isDoorOpen = true;
                         }
                         else
                         {
-                            Console.WriteLine("There's a C4 on the wall");
+                            Console.WriteLine("There's a C4 on the wall. If you could shoot it you would");
 
                         }
                     }
                     else
                     {
-                        Console.WriteLine("You go through the wide open door");
+                        Console.WriteLine("You go through the wide open door. The wolf is there, he seems surprised");
                         Game.Transition<Purgatory>();
                         Game.currentRoom = new Purgatory();
                     }
@@ -127,7 +127,7 @@ The hell [door] is closed shut behind you..
                     break;
                 case "seize":
 
-                    if (!isCodeBroken)
+                    if (isCodeBroken)
                     {
 
                         Console.WriteLine("You take the orb!");
@@ -135,7 +135,7 @@ The hell [door] is closed shut behind you..
                     }
                     else
                     {
-                        Console.WriteLine("Yeeowch!! It's stuck and it burns! You take 10 damage ?");
+                        Console.WriteLine("Yeeowch!! It's stuck and it burns! You take 10 damage");
                         Game.hp -= 10;
                     }
                     
@@ -153,8 +153,10 @@ The hell [door] is closed shut behind you..
                     
                     break;
                 case "auagcu":
-                    Console.WriteLine("You say that word outloud, and the [orb] unlocks from it's pedestal!");    
+                    Console.WriteLine("You say that word outloud, and the [orb] unlocks from it's pedestal!");  
+                    isCodeBroken = true;
                     break;  
+
                 default:
                     Console.WriteLine("Invalid command.");
                     break;

@@ -1,24 +1,25 @@
 ﻿using NarrativeProject.Rooms;
 using System;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 
 namespace NarrativeProject
 {
     public class Program
     {
        
-        public virtual void gameDone()
-        {
-            // this is for the room names
-            string fullRoomName = Game.currentRoom.ToString();
-            int lastIndex = fullRoomName.LastIndexOf('.') + 1;
-            string roomName = fullRoomName.Substring(lastIndex);
 
-            Console.WriteLine("You died in " + roomName);
-            Console.ReadLine();
-        }
         static void Main(string[] args)
         {
+
+            Console.WriteLine("Welcome to the Corridor! This game has 3 endings! And many ways to die . . .");
+            Thread.Sleep(3000);
+            Console.WriteLine("You open your eyes");
+            Thread.Sleep(3000);
+            Console.WriteLine("Here we go again");
+            Thread.Sleep(3000);
+
+
             var game = new Game();
             game.Add(new Corridor());
             game.Add(new Nature());
@@ -48,21 +49,15 @@ namespace NarrativeProject
 
             }
 
+            // this is for the room names
+            string fullRoomName = Game.currentRoom.ToString();
+            int lastIndex = fullRoomName.LastIndexOf('.') + 1;
+            string roomName = fullRoomName.Substring(lastIndex);
 
-
-            
-        }
-    }
-    public class Program2 : Program
-    {
-        public override void gameDone()
-        {
-            for (int i = 0; i < 5000; i++)
-            {
-                Console.WriteLine("YOU WIN");
-            }
-  
+            Console.WriteLine("You died in " + roomName);
             Console.ReadLine();
+
+
         }
     }
 

@@ -5,17 +5,19 @@ namespace NarrativeProject.Rooms
 {
     internal class Purgatory : Room
     {
-       
-       
-        
 
-        
+        public override void gameDone()
+        {
+            for (int i = 0; i < 500; i++)
+            {
+                Console.WriteLine("YOU KILLED HIM");
+            }
 
-        internal static bool isBombCollected = false;
+            Console.ReadLine();
+        }
 
-        internal static bool isNatureOpen = false;
-        internal static bool isOceanOpen = false;
-        internal static bool isHellOpen = false;
+
+
 
 
 
@@ -49,12 +51,12 @@ The wolf throws a lava bucket at your face. But you're immune!
 --------------------------------------------
 [shoot] him ?
 --------------------------------------------
-launch [fish] ... at him .. ??
+launch [coconut]s ... at him .. ??
 ";
 
         internal override void ReceiveChoice(string choice)
         {
-            while (wolfhp > 1) 
+            while (wolfhp > 0) 
             {
                 switch (choice)
                 {
@@ -108,6 +110,19 @@ launch [fish] ... at him .. ??
 
                         }
                         break;
+                    case "coconut":
+                        if (Game.inventory.Contains("Coconut"))
+                        {
+                            Console.WriteLine("You coconut the wolf!");
+                            wolfhp -= 20;
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("No more coconuts!");
+
+                        }
+                        break;
                     case "shoot":
                         if (Game.inventory.Contains("Bullet"))
                         {
@@ -139,10 +154,7 @@ launch [fish] ... at him .. ??
                 Console.Clear();
             }
             Console.Clear();
-            for (int i = 0; i < 500; i++)
-            {
-                Console.WriteLine("YOU KILLED HIM");
-            }
+            gameDone();
             Game.Finish();
 
             
