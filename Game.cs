@@ -10,7 +10,7 @@ namespace NarrativeProject
 
         static public Room currentRoom;
         internal bool IsGameOver() => isFinished;
-        static bool isFinished;
+        public static bool isFinished;
         static string nextRoom = "";
         public static List<string> inventory = new List<string>();
 

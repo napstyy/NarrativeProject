@@ -17,7 +17,7 @@ namespace NarrativeProject.Rooms
         internal static bool isOceanOpen = false;
         internal static bool isHellOpen = false;
 
-        private Game game;
+
 
         Random random = new Random();
 
@@ -54,7 +54,7 @@ launch [fish] ... at him .. ??
 
         internal override void ReceiveChoice(string choice)
         {
-            while (wolfhp > 0) 
+            while (wolfhp > 1) 
             {
                 switch (choice)
                 {
