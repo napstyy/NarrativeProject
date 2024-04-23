@@ -116,7 +116,7 @@ beyond where you are. It's pure void and darkness on both sides
                     }
                     break;
                 case "hell":
-                    if (!isHellOpen)
+                    if (isHellOpen)
                     {
                         if (Game.inventory.Contains("Suit"))
                         {
