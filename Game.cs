@@ -90,12 +90,6 @@ namespace NarrativeProject
             inventory.Remove(item);
         }
 
-
-
-
-
-
-
-
     }
+
 }
