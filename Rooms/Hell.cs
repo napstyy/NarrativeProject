@@ -11,7 +11,7 @@ namespace NarrativeProject.Rooms
 
         internal static bool isDoorOpen = false;
         internal static bool isCodeBroken = false;
-        internal static bool isPortalOpen = false;
+        internal static bool isPortalOpen = true;
 
 
 
